@@ -1,29 +1,38 @@
-from typing import Union
+from typing import Union, List, Optional, Set
 from fastapi.encoders import jsonable_encoder
 from fastapi import FastAPI
 from pydantic import BaseModel
-from friend_recommend.Friend_Recommend import Friend_recommend
+# from friend_recommend.Friend_Recommend import Friend_recommend
+from friend_recommend.Friend_Recommend import Friend_recommend2
+
 import json
 app = FastAPI()
 
 class Item(BaseModel):
     name: Union[str, None] = None
     price: Union[float, None] = None
+    DB: list
     is_offer: Union[bool, None] = None
-    id: Union[int, None] = None
 
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
 
 # 친구 추천 함수 라우트
-@app.put("/test")
-def test_model(item: Item):
-    friend_list = Friend_recommend(item.name)
-    # json으로 호환 가능하게 데이터 타입을 바꿔주는 인코더
-    friend_list_jsonable = jsonable_encoder(friend_list)
-    # json.dumps(friend_list_jsonable)
-    return {"friend_recommend_list":friend_list_jsonable}
+# @app.put("/test")
+# def test_model(item: Item):
+#     friend_list = Friend_recommend2(item.DB)
+#     # json으로 호환 가능하게 데이터 타입을 바꿔주는 인코더
+#     friend_list_jsonable = jsonable_encoder(friend_list)
+#     # json.dumps(friend_list_jsonable)
+#     return {"friend_recommend_list":friend_list_jsonable}
+
+@app.put("/friend")
+def friend_model(item: Item):
+    friend_dict = Friend_recommend2(item.DB)
+    json_example = json.dumps(friend_dict)
+    print(json_example)
+    return json_example
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
