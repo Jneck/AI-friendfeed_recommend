@@ -35,11 +35,9 @@ def Friend_recommend(User):
 
 
 def Friend_recommend2(User_DB):
-    print(User_DB)
     Friend_df = pd.DataFrame(User_DB)
     Friend_df = Friend_df.astype('str')
     Friend_df.transpose()
-    print(Friend_df)
     Guest_list = Friend_df['Guest']
     Guest_unique = Guest_list.unique()
     Friend_df['Score'] = Friend_df['lifing_count'] + (Friend_df['roomIn_count'] * 4) + (
