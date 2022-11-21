@@ -30,9 +30,8 @@ def read_root():
 @app.put("/friend")
 def friend_model(item: Item):
     friend_dict = Friend_recommend2(item.DB)
-    json_example = json.dumps(friend_dict)
-    print(json_example)
-    return json_example
+    # json_example = json.dumps(friend_dict)
+    return friend_dict
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
