@@ -28,10 +28,16 @@ def read_root():
 #     return {"friend_recommend_list":friend_list_jsonable}
 
 @app.put("/friend")
-def friend_model(item: Item):
-    friend_dict = Friend_recommend2(item.DB)
-    # json_example = json.dumps(friend_dict)
-    return friend_dict
+def Friend_model(item: Item):
+    Friend_dict = Friend_recommend(item.DB)
+    # json_example = json.dumps(Friend_dict)
+    return Friend_dict
+
+@app.put("/feed")
+def Feed_model(item: Item):
+    Feed_dict = Feed_recommend(item.DB)
+    # json_example = json.dumps(Feed_dict)
+    return Feed_dict
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
