@@ -36,11 +36,11 @@ import json
 def Friend_recommend(User_DB):
     Friend_df = pd.DataFrame(User_DB)
     Friend_df = Friend_df.astype('str')
-    Guest_list = Friend_df['Guest']
+    Guest_list = Friend_df['guest']
     Guest_unique = Guest_list.unique()
-    Friend_df['Score'] = Friend_df['lifing_count'] + (Friend_df['roomIn_count'] * 4) + (
-                Friend_df['guestbook_count'] * 5) + Friend_df['chatting']
-    Score_df = Friend_df.pivot_table('Score', index='Guest', columns='User_id')
+    Friend_df['score'] = Friend_df['lifingCount'] + (Friend_df['roomInCount'] * 4) + (
+                Friend_df['guestBookCount'] * 5) + Friend_df['chatting']
+    Score_df = Friend_df.pivot_table('score', index='guest', columns='userId')
     Score_df.fillna(0, inplace=True)
 
     # 유저와 유저 간의 유사도
@@ -57,11 +57,11 @@ def Friend_recommend(User_DB):
 def Feed_recommend(User_DB):
     Feed_df = pd.DataFrame(User_DB)
     Feed_df = Feed_df.astype('str')
-    Guest_list = Feed_df['Guest']
+    Guest_list = Feed_df['guest']
     Guest_unique = Guest_list.unique()
-    Feed_df['Score'] = Feed_df['feed_view_count'] + (Feed_df['hunny'] * 4) + (
-                Feed_df['comment_count'] * 5)
-    Score_df = Feed_df.pivot_table('Score', index='Guest', columns='Feed_id')
+    Feed_df['score'] = Feed_df['feedViewCount'] + (Feed_df['hunny'] * 4) + (
+                Feed_df['commentCount'] * 5)
+    Score_df = Feed_df.pivot_table('score', index='guest', columns='feedId')
     Score_df.fillna(0, inplace=True)
 
     # 유저와 유저 간의 유사도

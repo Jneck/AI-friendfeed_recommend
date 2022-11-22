@@ -29,13 +29,13 @@ def read_root():
 @app.put("/friend")
 def Friend_model(item: Item):
     Friend_dict = Friend_recommend(item.DB)
-    # json_example = json.dumps(Friend_dict)
-    return Friend_dict
+    Friend_dict_json = jsonable_encoder(Friend_dict)
+    return Friend_dict_json
 
 @app.put("/feed")
 def Feed_model(item: Item):
     Feed_dict = Feed_recommend(item.DB)
-    # json_example = json.dumps(Feed_dict)
+    Feed_dict = jsonable_encoder(Feed_dict)
     return Feed_dict
 
 @app.get("/items/{item_id}")
