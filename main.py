@@ -2,8 +2,7 @@ from typing import Union, List, Optional, Set
 from fastapi.encoders import jsonable_encoder
 from fastapi import FastAPI
 from pydantic import BaseModel
-# from friend_recommend.Friend_Recommend import Friend_recommend
-from friend_recommend.Friend_Recommend import Friend_recommend2
+from friend_recommend.Friend_Recommend import Friend_recommend
 
 import json
 app = FastAPI()
